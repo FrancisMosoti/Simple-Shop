@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -21,7 +22,9 @@ const App = () => {
             <Route path="/product/:id" element={<ProductDetailsPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/admin" element={<AdminDashboardPage />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/admin" element={<AdminDashboardPage />} />
+            </Route>
           </Routes>
           <Footer />
         </Router>

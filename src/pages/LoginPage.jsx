@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const { login } = useAuth();
+  const navigate = useNavigate(); // Hook for navigation
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -34,7 +36,13 @@ const LoginPage = () => {
 
     // Validate the form before submitting
     if (validateForm()) {
-      login(email, password);
+      // Mock authentication
+      if (email === "admin@example.com" && password === "password") {
+        login(email, password); // Update authentication state
+        navigate("/admin"); // Navigate to the Admin Dashboard
+      } else {
+        setErrors({ general: "Invalid email or password." });
+      }
     }
   };
 
@@ -72,6 +80,9 @@ const LoginPage = () => {
             <p className="text-red-500 text-sm mt-1">{errors.password}</p>
           )}
         </div>
+        {errors.general && (
+          <p className="text-red-500 text-sm mb-4">{errors.general}</p>
+        )}
         <button
           type="submit"
           className="bg-blue-600 text-white px-4 py-2 rounded"
