@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="bg-blue-600 text-white p-8">
+    <footer className="bg-blue-600 text-white p-8 mb-0">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
           <h3 className="font-bold">MyCompany</h3>
@@ -23,3 +23,5 @@ const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;
