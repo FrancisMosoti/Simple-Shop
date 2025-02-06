@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <nav className="bg-blue-600 p-4 text-white flex justify-between">
       <Link to="/" className="text-lg font-bold">
-        Fake Store
+        Simple Shop
       </Link>
       <div>
         <Link to="/cart" className="mr-4">
