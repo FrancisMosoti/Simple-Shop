@@ -30,7 +30,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div className="p-6 bg-gray-100">
+    <div className="p-6 bg-gray-100 mt-4">
       <h2 className="text-2xl font-bold mb-4">Customer Testimonials</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {testimonials.map((testimonial) => (
