@@ -1,42 +1,20 @@
-import { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
-// const NavBar = ({ cartCount, showAnimation }) => {
-//   return (
-//     <nav className="fixed top-0 w-full bg-blue-500 text-white flex justify-between items-center ">
-//       <div className="p-4">Logo</div>
-//       <div className="mr-10">
-//         <ul className="flex gap-8">
-//           <li>Home</li>
-//           <li>Products</li>
-//           <li>Cart</li>
-//           <li>Login</li>
-//           <div className="relative">
-//             <span className="text-xl">🛒</span>
-//             {cartCount > 0 && (
-//               <span
-//                 className={`absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1 ${
-//                   showAnimation ? "animate-bounce" : ""
-//                 }`}
-//               >
-//                 {cartCount}
-//               </span>
-//             )}
-//           </div>
-//         </ul>
-//       </div>
-//     </nav>
-//   );
-// };
-// Navbar Component
 const NavBar = () => {
+  const { cart } = useCart();
+
   return (
     <nav className="bg-blue-600 p-4 text-white flex justify-between">
-      <h1 className="text-lg font-bold">Fake Store</h1>
+      <Link to="/" className="text-lg font-bold">
+        Fake Store
+      </Link>
       <div>
-        <a href="/cart" className="mr-4">
-          Cart
-        </a>
-        <a href="/login">Login</a>
+        <Link to="/cart" className="mr-4">
+          Cart ({cart.length})
+        </Link>
+        <Link to="/login">Login</Link>
       </div>
     </nav>
   );
