@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-const Home = ({ setCartCount, cartCount }) => {
+const Home = ({ setCartCount, cartCount, setShowAnimation }) => {
   const [sortOption, setSortOption] = useState("price");
+  const [cart, setCart] = useState([]); // Cart state
 
   // Dummy data for products and testimonials
   const products = [
@@ -38,6 +39,22 @@ const Home = ({ setCartCount, cartCount }) => {
     }
     return 0;
   });
+
+  // Add to cart function
+  const addToCart = (product) => {
+    setCart([...cart, product]); // Add product to cart
+    setCartCount(cartCount + 1); // Update cart count
+    setShowAnimation(true); // Trigger animation
+    setTimeout(() => setShowAnimation(false), 500); // Reset animation after 500ms
+  };
+
+  // Remove from cart function
+  const removeFromCart = (productId) => {
+    const updatedCart = cart.filter((item) => item.id !== productId); // Remove product from cart
+    setCart(updatedCart);
+    setCartCount(cartCount - 1); // Update cart count
+  };
+
   return (
     <>
       {/* Promotional Banner */}
@@ -92,11 +109,19 @@ const Home = ({ setCartCount, cartCount }) => {
               <p className="font-bold mt-2">{product.name}</p>
               <p className="text-blue-600">${product.price}</p>
               <button
-                onClick={() => setCartCount(cartCount + 1)}
-                className="mt-2 bg-blue-600 text-white px-4 py-2 rounded"
+                onClick={() => addToCart(product)}
+                className="mt-2 bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700"
               >
                 Add to Cart
               </button>
+              {cart.some((item) => item.id === product.id) && (
+                <button
+                  onClick={() => removeFromCart(product.id)}
+                  className="mt-2 bg-red-600 text-white px-4 py-2 rounded w-full hover:bg-red-700"
+                >
+                  Remove from Cart
+                </button>
+              )}
             </div>
           ))}
         </div>
@@ -124,29 +149,6 @@ const Home = ({ setCartCount, cartCount }) => {
           ))}
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-blue-600 text-white p-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <h3 className="font-bold">MyCompany</h3>
-            <p>123 Main St, City, Country</p>
-          </div>
-          <div>
-            <h3 className="font-bold">Contact Us</h3>
-            <p>Email: info@mycompany.com</p>
-            <p>Phone: +123 456 7890</p>
-          </div>
-          <div>
-            <h3 className="font-bold">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="#">Facebook</a>
-              <a href="#">Twitter</a>
-              <a href="#">Instagram</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </>
   );
 };

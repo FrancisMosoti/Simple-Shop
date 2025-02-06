@@ -1,21 +1,33 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import NavBar from "./components/NavBar";
-import Home from "./components/Home";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/NavBar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
+import CartPage from "./pages/CartPage";
+import LoginPage from "./pages/LoginPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
+import { CartProvider } from "./context/CartContext";
+import { AuthProvider } from "./context/AuthContext";
 
-function App() {
-  const [cartCount, setCartCount] = useState(0);
-  const handleCount = (count) => {
-    setCartCount(count);
-  };
-
+const App = () => {
   return (
-    <>
-      <NavBar cartCount={cartCount} />
-      <Home setCartCount={handleCount} cartCount={cartCount} />
-    </>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetailsPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/admin" element={<AdminDashboardPage />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
