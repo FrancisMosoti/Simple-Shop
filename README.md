@@ -53,6 +53,11 @@ npm run dev
 
 The app will be available at [http://localhost:5173](http://localhost:5173).
 
+## Login Credentials for Testing
+
+- **Email:** admin@example.com
+- **Password:** password
+
 ## Dependency Installation Steps
 
 The project uses the following dependencies. They are automatically installed when you run `npm install`, but here’s a list for reference:
