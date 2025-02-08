@@ -59,7 +59,6 @@ const LoginPage = () => {
             className={`w-full px-4 py-2 border rounded ${
               errors.email ? "border-red-500" : ""
             }`}
-            required
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -74,7 +73,6 @@ const LoginPage = () => {
             className={`w-full px-4 py-2 border rounded ${
               errors.password ? "border-red-500" : ""
             }`}
-            required
           />
           {errors.password && (
             <p className="text-red-500 text-sm mt-1">{errors.password}</p>
